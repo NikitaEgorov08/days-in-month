@@ -1,11 +1,10 @@
-Date.prototype.daysInMonth = function() {
-		return 32 - new Date(this.getFullYear(), this.getMonth(), 32).getDate();
-	};
-  
-  /**
-  * For Safari browser or any browser, which get wrong result
-  */
-  
-  Date.prototype.daysInMonth = function() {
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isSafari) {
+	Date.prototype.daysInMonth = function() {
 		return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
 	};
+} else {
+	Date.prototype.daysInMonth = function() {
+		return 32 - new Date(this.getFullYear(), this.getMonth(), 32).getDate();
+	};
+}
